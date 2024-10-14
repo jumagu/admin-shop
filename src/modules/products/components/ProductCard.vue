@@ -14,8 +14,12 @@ defineProps<Props>();
     class="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300"
   >
     <a href="#">
-      <div class="overflow-hidden rounded-xl">
-        <img :src="product.images[0]" width="250" height="250" :alt="product.title" />
+      <div class="overflow-hidden rounded-xl w-auto h-[250px]">
+        <img
+          :src="product.images[0]"
+          :alt="product.title"
+          class="size-full object-cover object-top"
+        />
       </div>
 
       <div class="mt-1 p-2">
