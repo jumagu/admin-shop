@@ -6,7 +6,6 @@ import skipFormatting from '@vue/eslint-config-prettier/skip-formatting';
 export default [
   {
     name: 'app/files-to-lint',
-    '@typescript-eslint/no-explicit-any': 'off',
     files: ['**/*.{ts,mts,tsx,vue}'],
   },
   {
