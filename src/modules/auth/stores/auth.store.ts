@@ -59,6 +59,8 @@ export const useAuthStore = defineStore('auth', () => {
   };
 
   const startCheckAuth = async () => {
+    status.value = AuthStatus.Checking;
+
     try {
       const checkAuthData = await checkAuth();
 
