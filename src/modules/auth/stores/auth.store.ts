@@ -1,5 +1,6 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
+import { useRouter } from 'vue-router';
 import { useToast } from 'vue-toastification';
 import { useLocalStorage } from '@vueuse/core';
 
@@ -9,12 +10,15 @@ import { checkAuth, login, register } from '../actions';
 
 export const useAuthStore = defineStore('auth', () => {
   const toast = useToast();
+  const router = useRouter();
 
   const user = ref<User>();
   const token = useLocalStorage('token', '');
   const status = ref<AuthStatus>(AuthStatus.Checking);
 
   const startLogin = async (email: string, password: string) => {
+    status.value = AuthStatus.Checking;
+
     try {
       const loginData = await login(email, password);
 
@@ -22,6 +26,7 @@ export const useAuthStore = defineStore('auth', () => {
       token.value = loginData.token;
       status.value = AuthStatus.Authenticated;
 
+      router.replace({ name: 'home' });
       toast.success('Log in successfully.');
     } catch (error) {
       startLogout();
@@ -30,6 +35,8 @@ export const useAuthStore = defineStore('auth', () => {
   };
 
   const startRegister = async (fullName: string, email: string, password: string) => {
+    status.value = AuthStatus.Checking;
+
     try {
       const registerData = await register(fullName, email, password);
 
@@ -37,6 +44,7 @@ export const useAuthStore = defineStore('auth', () => {
       token.value = registerData.token;
       status.value = AuthStatus.Authenticated;
 
+      router.replace({ name: 'home' });
       toast.success('Your account has been successfully created.');
     } catch (error) {
       startLogout();
