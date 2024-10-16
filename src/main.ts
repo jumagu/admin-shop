@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { VueQueryPlugin } from '@tanstack/vue-query';
 
-import Toast from 'vue-toastification';
+import Toast, { POSITION } from 'vue-toastification';
 import 'vue-toastification/dist/index.css';
 
 import './assets/main.css';
@@ -14,6 +14,6 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(VueQueryPlugin);
 app.use(router);
-app.use(Toast);
+app.use(Toast, { position: POSITION.BOTTOM_RIGHT });
 
 app.mount('#app');
