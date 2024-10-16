@@ -12,7 +12,6 @@ const isAuthenticatedGuard = async (
   next: NavigationGuardNext,
 ) => {
   const authStore = useAuthStore();
-
   return authStore.isAuthenticated ? next() : next({ name: 'login', replace: true });
 };
 
