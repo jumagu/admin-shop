@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, watch, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
+import { useToast } from 'vue-toastification';
+import { ref, watch, watchEffect } from 'vue';
 
 import { useQuery, useQueryClient } from '@tanstack/vue-query';
 
@@ -12,12 +13,17 @@ import MyPagination from '@/modules/common/components/ui/MyPagination.vue';
 import { getPageNumber } from '@/modules/common/utils/get-page-number.util';
 
 const route = useRoute();
-const page = ref(getPageNumber(route.query.page as string));
+const toast = useToast();
 const queryClient = useQueryClient();
+const page = ref(getPageNumber(route.query.page as string));
 
-const { data: products } = useQuery({
+const { data: products, error } = useQuery({
   queryKey: ['products', { page }], // Caches the response
   queryFn: () => getProducts(page.value),
+});
+
+watch(error, (error) => {
+  return error?.message && toast.error(error?.message);
 });
 
 watch(
