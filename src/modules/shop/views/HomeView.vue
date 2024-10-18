@@ -23,7 +23,7 @@ const { data: products, error } = useQuery({
 });
 
 watch(error, (error) => {
-  return error?.message && toast.error(error?.message);
+  return error?.message && toast.error(error.message);
 });
 
 watch(
