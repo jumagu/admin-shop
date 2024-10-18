@@ -1,0 +1,38 @@
+<script setup lang="ts">
+import { watchEffect } from 'vue';
+import { useRouter } from 'vue-router';
+import { useQuery } from '@tanstack/vue-query';
+
+import { getProductById } from '@/modules/products/actions';
+import ProductForm from '../components/product/ProductForm.vue';
+
+interface Props {
+  id: string;
+}
+
+const props = defineProps<Props>();
+
+const router = useRouter();
+
+const {
+  data: product,
+  isError,
+  isLoading,
+} = useQuery({
+  queryKey: ['product', props.id],
+  queryFn: () => getProductById(props.id),
+  retry: false,
+});
+
+watchEffect(() => {
+  if (isError.value && !isLoading.value) return router.replace('/admin/products');
+});
+</script>
+
+<template>
+  <div class="bg-white p-5">
+    <h1 class="text-3xl text-blue-500">{{ product?.title }}</h1>
+    <hr class="my-4" />
+    <product-form v-if="product" :product="product" />
+  </div>
+</template>
