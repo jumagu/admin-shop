@@ -15,4 +15,4 @@ export const NAV_ITEMS = [
     text: 'Contact',
     href: '/contact',
   },
-];
+] as const;
