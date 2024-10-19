@@ -7,7 +7,7 @@ export const getProducts = async (page: number = 1, limit: number = 10): Promise
     const res = await shopApi.get<Product[]>('/products', {
       params: {
         limit,
-        offset: page * limit,
+        offset: (page - 1) * limit,
       },
     });
 
