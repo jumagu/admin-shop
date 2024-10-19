@@ -21,7 +21,7 @@ defineEmits(['update:modelValue', 'blur']);
     <textarea
       :id="id"
       :value="modelValue"
-      :class="['textarea', { 'border-red-500': error }]"
+      :class="['custom-textarea', { 'border-red-500': error }]"
       :placeholder="placeholder"
       :aria-invalid="!!error"
       :aria-describedby="errorId"
@@ -39,7 +39,7 @@ defineEmits(['update:modelValue', 'blur']);
   @apply block text-gray-700 text-sm font-bold mb-2;
 }
 
-.textarea {
+.custom-textarea {
   @apply shadow h-32 max-h-64 min-h-10 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none;
 }
 </style>
