@@ -7,7 +7,7 @@ export const adminRoutes: RouteRecordRaw = {
   path: '/admin',
   name: 'admin',
   beforeEnter: [isAuthenticatedGuard, isAdminGuard],
-  redirect: { name: 'admin-dashboard' },
+  redirect: { name: 'admin-products' },
   component: () => import('@/modules/admin/layouts/AdminLayout.vue'),
   children: [
     {
