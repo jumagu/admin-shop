@@ -44,7 +44,7 @@ export default defineComponent({
     // Form refs
     const { defineField, errors, handleSubmit, resetForm } = useForm({
       validationSchema,
-      initialValues: props.product ? props.product : { images: [] },
+      initialValues: props.product ? props.product : { sizes: [], images: [] },
     });
 
     const [title, titleAttrs] = defineField('title');
