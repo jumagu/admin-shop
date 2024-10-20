@@ -1,6 +1,7 @@
 import shopApi from '@/apis/shop.api';
 import { getProductImage } from '../helpers';
 import type { Product } from '../interfaces/product.interface';
+import { isAxiosError } from 'axios';
 
 interface CreateUpdateResponse {
   msg: 'updated' | 'created';
@@ -41,14 +42,14 @@ const updateProduct = async (productId: string, product: Partial<Product>): Prom
   try {
     const res = await shopApi.patch<Product>(`/products/${productId}`, product);
 
-    if (res.status !== 200) throw new Error();
+    if (res.status !== 200) throw new Error('Oops! could not update the product. Try again later.');
 
     return {
       ...res.data,
       images: res.data.images.map(getProductImage),
     };
-  } catch {
-    throw new Error('An error occurred while updating the product.');
+  } catch (error) {
+    return handleProductCreationUpdateError(error, product, 'updating');
   }
 };
 
@@ -56,14 +57,14 @@ const createProduct = async (product: Partial<Product>): Promise<Product> => {
   try {
     const res = await shopApi.post<Product>(`/products`, product);
 
-    if (res.status !== 201) throw new Error();
+    if (res.status !== 201) throw new Error('Oops! could not create the product. Try again later.');
 
     return {
       ...res.data,
       images: res.data.images.map(getProductImage),
     };
-  } catch {
-    throw new Error('An error occurred while creating the product.');
+  } catch (error) {
+    return handleProductCreationUpdateError(error, product, 'creating');
   }
 };
 
@@ -99,4 +100,25 @@ const uploadImages = async (images: (string | File)[]): Promise<string[]> => {
   });
 
   return [...currentImages, ...(await Promise.all(uploadromises))];
+};
+
+const handleProductCreationUpdateError = (
+  error: unknown,
+  product: Partial<Product>,
+  operation: 'creating' | 'updating' = 'creating',
+): never => {
+  if (isAxiosError(error) && error.status === 400) {
+    const errorMessage = error.response?.data.message;
+    if (errorMessage === `Key (title)=(${product.title}) already exists.`) {
+      throw new Error(`A product with the title "${product.title}" already exists.`);
+    } else if (errorMessage === `Key (slug)=(${product.slug}) already exists.`) {
+      throw new Error(`A product with the slug "${product.slug}" already exists.`);
+    } else {
+      throw new Error('One or more fields have errors or incorrect format.');
+    }
+  } else if (error instanceof Error) {
+    throw error;
+  } else {
+    throw new Error(`An error occurred while ${operation} the product.`);
+  }
 };
