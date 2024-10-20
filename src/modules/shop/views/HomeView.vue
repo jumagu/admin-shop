@@ -17,7 +17,11 @@ const toast = useToast();
 const queryClient = useQueryClient();
 const page = ref(getPageNumber(route.query.page as string));
 
-const { data: products, error } = useQuery({
+const {
+  data: products,
+  error,
+  isLoading,
+} = useQuery({
   queryKey: ['products', { page }], // Caches the response
   queryFn: () => getProducts(page.value),
 });
@@ -58,19 +62,18 @@ watchEffect(() => {
 
   <tab-menu />
 
-  <product-grid v-if="products && products.length > 0">
+  <div v-if="isLoading" class="py-10 flex items-center flex-1">
+    <span class="loading loading-spinner loading-lg text-blue-500 mx-auto" aria-label="loading"
+      >loading</span
+    >
+  </div>
+
+  <product-grid v-else-if="products && products.length > 0">
     <product-card v-for="product in products" :product="product" :key="product.id" />
   </product-grid>
 
   <div v-else class="py-10 flex items-center flex-1">
-    <div
-      class="w-full mx-2 text-center text-xl"
-      role="status"
-      aria-live="polite"
-      aria-atomic="true"
-    >
-      There are no results for this page.
-    </div>
+    <span class="w-full mx-2 text-center text-xl">There are no results for this page.</span>
   </div>
 
   <my-pagination :page="page" :no-more-data="!!products && products.length < 10" />

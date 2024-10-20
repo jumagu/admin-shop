@@ -11,7 +11,11 @@ const toast = useToast();
 const { page } = usePagination();
 const queryClient = useQueryClient();
 
-const { data: products, error } = useQuery({
+const {
+  data: products,
+  error,
+  isLoading,
+} = useQuery({
   queryKey: ['products', { page }],
   queryFn: () => getProducts(page.value),
 });
@@ -52,22 +56,33 @@ watchEffect(() => {
       <table class="w-full bg-white">
         <thead class="bg-gray-800 text-white">
           <tr>
-            <th class="min-w-24 text-left py-3 px-4 uppercase font-semibold text-sm">Image</th>
-            <th class="min-w-[420px] text-left py-3 px-4 uppercase font-semibold text-sm">Title</th>
-            <th class="min-w-20 text-left py-3 px-4 uppercase font-semibold text-sm">Price</th>
-            <th class="min-w-52 text-left py-3 px-4 uppercase font-semibold text-sm">Sizes</th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Image</th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Title</th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Price</th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Sizes</th>
           </tr>
         </thead>
         <tbody>
+          <tr v-if="isLoading">
+            <td colspan="4" class="py-10">
+              <div class="w-full flex">
+                <span
+                  class="loading loading-spinner loading-lg text-blue-500 mx-auto"
+                  aria-label="loading"
+                ></span>
+              </div>
+            </td>
+          </tr>
           <tr
+            v-else-if="products && products.length > 0"
             v-for="(product, index) in products"
             :class="{ 'bg-gray-100': index % 2 === 0 }"
             :key="product.id"
           >
-            <td class="py-3 px-4">
+            <td class="py-3 px-4 min-w-24">
               <img class="w-11 h-11" :src="product.images[0]" :alt="product.title" />
             </td>
-            <td class="py-3 px-4">
+            <td class="py-3 px-4 min-w-[420px]">
               <router-link
                 :to="`product/${product.id}`"
                 class="hover:underline hover:text-blue-500"
@@ -75,8 +90,17 @@ watchEffect(() => {
                 {{ product.title }}
               </router-link>
             </td>
-            <td class="py-3 px-4">${{ product.price }}</td>
-            <td class="py-3 px-4">{{ product.sizes.join(', ') }}</td>
+            <td class="py-3 px-4 min-w-20">${{ product.price }}</td>
+            <td class="py-3 px-4 min-w-52">{{ product.sizes.join(', ') }}</td>
+          </tr>
+          <tr v-else>
+            <td colspan="4" class="py-10">
+              <div class="w-full flex">
+                <span class="w-full mx-2 text-center text-xl"
+                  >There are no results for this page.</span
+                >
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>

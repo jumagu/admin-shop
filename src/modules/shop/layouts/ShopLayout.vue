@@ -9,7 +9,7 @@ import MyFooter from '../components/MyFooter.vue';
     <input id="shop-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
       <nav-bar />
-      <main class="flex flex-col min-h-[calc(100vh-124px)] lg:min-h-[calc(100vh-88px)]">
+      <main class="shop-main-container">
         <router-view />
       </main>
       <my-footer />
@@ -21,3 +21,9 @@ import MyFooter from '../components/MyFooter.vue';
     </div>
   </div>
 </template>
+
+<style lang="css" scoped>
+.shop-main-container {
+  @apply flex flex-col min-h-[calc(100vh-164px)] md:min-h-[calc(100vh-124px)] lg:min-h-[calc(100vh-88px)];
+}
+</style>

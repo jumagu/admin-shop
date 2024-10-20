@@ -43,7 +43,7 @@ const logoutHandler = () => {
           </button>
         </header>
 
-        <main class="p-6 bg-gray-200">
+        <main class="p-6 bg-gray-200 min-h-[calc(100vh-64px)]">
           <router-view />
         </main>
       </div>
