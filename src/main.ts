@@ -4,6 +4,7 @@ import { VueQueryPlugin } from '@tanstack/vue-query';
 
 import Toast, { POSITION } from 'vue-toastification';
 import 'vue-toastification/dist/index.css';
+import './config/yup';
 
 import './assets/main.css';
 import App from './App.vue';
