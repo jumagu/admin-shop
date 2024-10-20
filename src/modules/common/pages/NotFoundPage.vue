@@ -3,7 +3,9 @@ import ArrowLeftIcon from '../components/icons/ArrowLeftIcon.vue';
 </script>
 
 <template>
-  <main class="w-full h-screen flex flex-col items-center justify-center">
+  <main
+    class="w-full h-screen flex flex-col items-center justify-center animate__animated animate__fadeIn animate__faster"
+  >
     <img class="w-1/2 md:1/3 lg:w-1/4" src="../../../assets/not-found.svg" alt="Page Not Found" />
     <div class="flex flex-col items-center justify-center">
       <p class="text-center text-3xl md:text-4xl lg:text-5xl text-gray-800 mt-12">Page Not Found</p>

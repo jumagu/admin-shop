@@ -10,47 +10,48 @@ import GitHubIcon from '@/modules/common/components/icons/GitHubIcon.vue';
       class="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50"
     >
       <div class="grid justify-center lg:justify-between">
-        <div
+        <nav
           class="flex flex-col self-center text-sm text-center md:block lg:col-start-1 md:space-x-6"
         >
-          <span>Copyright © {{ new Date().getFullYear() }} by AdminShop</span>
+          <span role="none">Copyright © {{ new Date().getFullYear() }} by AdminShop</span>
           <a rel="noopener noreferrer" href="#">
             <span>Privacy policy</span>
           </a>
           <a rel="noopener noreferrer" href="#">
             <span>Terms of service</span>
           </a>
-        </div>
-        <div class="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
+        </nav>
+        <nav class="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
           <a
+            title="Email"
+            aria-label="Send a email to Admin Shop"
             rel="noopener noreferrer"
             href="mailto:email@example.com"
-            title="Email"
             class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 hover:bg-blue-600 duration-150 text-gray-50"
           >
             <mail-icon class="w-5 h-5" />
           </a>
-
           <a
-            title="Twitter - X"
+            title="X (twitter)"
             target="_blank"
+            aria-label="X (twitter)"
             rel="noopener noreferrer"
             href="https://x.com"
             class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 hover:bg-blue-600 duration-150 text-gray-50"
           >
             <x-icon class="w-5 h-5" />
           </a>
-
           <a
             title="GitHub"
             target="_blank"
+            aria-label="Github"
             rel="noopener noreferrer"
             href="https://github.com/jumagu/admin-shop"
             class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 hover:bg-blue-600 duration-150 text-gray-50"
           >
             <git-hub-icon class="w-5 h-5" />
           </a>
-        </div>
+        </nav>
       </div>
     </div>
   </footer>

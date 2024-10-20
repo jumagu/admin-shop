@@ -62,8 +62,15 @@ watchEffect(() => {
     <product-card v-for="product in products" :product="product" :key="product.id" />
   </product-grid>
 
-  <div v-else class="py-10">
-    <p class="mx-2 text-center text-xl">There are no results for this page.</p>
+  <div v-else class="py-10 flex items-center flex-1">
+    <div
+      class="w-full mx-2 text-center text-xl"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      There are no results for this page.
+    </div>
   </div>
 
   <my-pagination :page="page" :no-more-data="!!products && products.length < 10" />

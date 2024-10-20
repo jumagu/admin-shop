@@ -11,7 +11,7 @@ defineProps<Props>();
 </script>
 
 <template>
-  <div class="flex justify-center gap-2 py-10 bg-gray-100">
+  <div class="flex justify-center gap-2 py-10 bg-gray-100" aria-label="Pagination buttons">
     <button
       class="chevron-btn"
       :disabled="page <= 1"
