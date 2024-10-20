@@ -8,7 +8,7 @@ yup.setLocale({
     notOneOf: 'The value must not be one of the following: ${values}.',
     defined: 'This field must be defined.',
     notNull: 'This field cannot be null.',
-    notType: 'The value must be a ${type}',
+    notType: 'The value must be a ${type}.',
   },
   string: {
     length: 'The field must be exactly ${length} characters long.',
