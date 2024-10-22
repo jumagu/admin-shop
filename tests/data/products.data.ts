@@ -1,4 +1,6 @@
-export const PRODUCTS = [
+import { Gender, Size, type Product } from '@/modules/products/interfaces/product.interface';
+
+export const PRODUCTS: Product[] = [
   {
     id: '008ea87d-a16c-4c25-9de3-8a14bae089cd',
     title: 'Men’s Chill Crew Neck Sweatshirt',
@@ -7,8 +9,8 @@ export const PRODUCTS = [
       'Introducing the Tesla Chill Collection. The Men’s Chill Crew Neck Sweatshirt has a premium, heavyweight exterior and soft fleece interior for comfort in any season. The sweatshirt features a subtle thermoplastic polyurethane T logo on the chest and a Tesla wordmark below the back collar. Made from 60% cotton and 40% recycled polyester.',
     slug: 'mens_chill_crew_neck_sweatshirt',
     stock: 7,
-    sizes: ['XS', 'S', 'L', 'XL', 'XXL'],
-    gender: 'men',
+    sizes: [Size.Xs, Size.S, Size.L, Size.Xl, Size.Xxl],
+    gender: Gender.Men,
     tags: ['sweatshirt'],
     images: ['1740176-00-A_0_2000.jpg', '1740176-00-A_1.jpg'],
     user: {
@@ -27,8 +29,8 @@ export const PRODUCTS = [
       'The Unisex 3D Large Wordmark Pullover Hoodie features soft fleece and an adjustable, jersey-lined hood for comfort and coverage. Designed in a unisex style, the pullover hoodie includes a tone-on-tone 3D silicone-printed wordmark across the chest.',
     slug: '3d_large_wordmark_pullover_hoodie',
     stock: 15,
-    sizes: ['XS', 'S', 'XL', 'XXL'],
-    gender: 'unisex',
+    sizes: [Size.Xs, Size.S, Size.Xl, Size.Xxl],
+    gender: Gender.Women,
     tags: ['hoodie'],
     images: ['8529107-00-A_0_2000.jpg', '8529107-00-A_1.jpg'],
     user: {
@@ -47,8 +49,8 @@ export const PRODUCTS = [
       'Cruise the playground in style with the Kids Corp Jacket. Modeled after the original Tesla Corp Jacket, the Kids Corp Jacket features the same understated style and high-quality materials but at a pint-sized scale.',
     slug: 'kids_corp_jacket',
     stock: 10,
-    sizes: ['XS', 'S', 'M'],
-    gender: 'kid',
+    sizes: [Size.Xs, Size.S, Size.M],
+    gender: Gender.Kid,
     tags: ['shirt'],
     images: ['1506211-00-A_1_2000.jpg', '1506211-00-A_0_2000.jpg'],
     user: {
@@ -67,8 +69,8 @@ export const PRODUCTS = [
       "Designed for fit, comfort and style, the Men's 3D Large Wordmark Tee is made from 100% Peruvian cotton with a 3D silicone-printed Tesla wordmark printed across the chest.",
     slug: 'men_3d_large_wordmark_tee',
     stock: 12,
-    sizes: ['XS', 'S', 'M'],
-    gender: 'men',
+    sizes: [Size.Xs, Size.S, Size.M],
+    gender: Gender.Men,
     tags: ['shirt'],
     images: ['8764734-00-A_1.jpg', '8764734-00-A_0_2000.jpg'],
     user: {
@@ -87,8 +89,8 @@ export const PRODUCTS = [
       "Designed for style and comfort, the ultrasoft Women's T Logo Short Sleeve Scoop Neck Tee features a tonal 3D silicone-printed T logo on the left chest. Made of 50% Peruvian cotton and 50% Peruvian viscose.",
     slug: 'women_t_logo_short_sleeve_scoop_neck_tee',
     stock: 30,
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    gender: 'women',
+    sizes: [Size.Xs, Size.S, Size.M, Size.L, Size.Xl, Size.Xxl],
+    gender: Gender.Women,
     tags: ['shirt'],
     images: ['8765090-00-A_0_2000.jpg', '8765090-00-A_1.jpg'],
     user: {
@@ -107,8 +109,9 @@ export const PRODUCTS = [
       "Introducing the Tesla Raven Collection. The Men's Raven Lightweight Zip Up Bomber has a premium, modern silhouette made from a sustainable bamboo cotton blend for versatility in any season. The hoodie features subtle thermoplastic polyurethane Tesla logos on the left chest and below the back collar, a concealed chest pocket with custom matte zipper pulls and a french terry interior. Made from 70% bamboo and 30% cotton.",
     slug: 'men_raven_lightweight_zip_up_bomber_jacket',
     stock: 10,
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    gender: 'men',
+
+    sizes: [Size.S, Size.M, Size.L, Size.Xl, Size.Xxl],
+    gender: Gender.Men,
     tags: ['shirt'],
     images: ['1740250-00-A_1.jpg', '1740250-00-A_0_2000.jpg'],
     user: {
@@ -127,8 +130,8 @@ export const PRODUCTS = [
       "Designed for style and comfort, the Women's Small Wordmark Short Sleeve V-Neck Tee features a tonal 3D silicone-printed wordmark on the left chest. Made of 100% Peruvian cotton.",
     slug: 'women_small_wordmark_short_sleeve_v-neck_tee',
     stock: 18,
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    gender: 'women',
+    sizes: [Size.Xs, Size.S, Size.M, Size.L, Size.Xl, Size.Xxl],
+    gender: Gender.Women,
     tags: ['shirt'],
     images: ['8765120-00-A_0_2000.jpg', '8765120-00-A_1.jpg'],
     user: {
@@ -147,8 +150,8 @@ export const PRODUCTS = [
       'The Kids Cybertruck Tee features the iconic Cybertruck graffiti wordmark and is made from 100% Peruvian cotton for maximum comfort.',
     slug: 'kids_cybertruck_tee',
     stock: 10,
-    sizes: ['XS', 'S', 'M'],
-    gender: 'kid',
+    sizes: [Size.Xs, Size.S, Size.M],
+    gender: Gender.Kid,
     tags: ['shirt'],
     images: ['8529342-00-A_1.jpg', '8529342-00-A_0_2000.jpg'],
     user: {
@@ -167,8 +170,8 @@ export const PRODUCTS = [
       "Inspired by our fully integrated home solar and storage system, the Tesla Solar Roof Tee advocates for clean, sustainable energy wherever you go. Designed for fit, comfort and style, the tee features an aerial view of our seamless Solar Roof design on the front with our signature T logo above 'Solar Roof' on the back. Made from 100% Peruvian cotton.",
     slug: 'men_solar_roof_tee',
     stock: 15,
-    sizes: ['S', 'M', 'L', 'XL'],
-    gender: 'men',
+    sizes: [Size.S, Size.M, Size.L, Size.Xl],
+    gender: Gender.Men,
     tags: ['shirt'],
     images: ['1703767-00-A_1.jpg', '1703767-00-A_0_2000.jpg'],
     user: {
@@ -187,8 +190,8 @@ export const PRODUCTS = [
       "Designed to celebrate Tesla's incredible performance mode, the Plaid Mode Tee features great fit, comfort and style. Made from 100% cotton, it's the next best thing to riding shotgun at the Nürburgring.",
     slug: 'women_plaid_mode_tee',
     stock: 16,
-    sizes: ['S', 'M'],
-    gender: 'women',
+    sizes: [Size.S, Size.M],
+    gender: Gender.Women,
     tags: ['shirt'],
     images: ['1549275-00-A_1.jpg', '1549275-00-A_0_2000.jpg'],
     user: {
